@@ -1,0 +1,16 @@
+mywifi: default country US instead of CN.
+ath11k is self-managed: firmware's CN table caps 2.4G at 20 dBm, US allows 27 dBm on Redmi AX6.
+
+diff --git a/my-default-settings/files/sbin/mywifi b/my-default-settings/files/sbin/mywifi
+index dc5c6faba..ef60a537d 100755
+--- a/my-default-settings/files/sbin/mywifi
++++ b/my-default-settings/files/sbin/mywifi
+@@ -198,7 +198,7 @@ for radio in $RADIOS; do
+ 
+     # 配置 radio 参数
+     uci -q del wireless.${radio}.disabled
+-    uci -q set wireless.${radio}.country='CN'
++    uci -q set wireless.${radio}.country='US'
+     [ "$band" = "5g" ] && case "$DISTRIB_TARGET" in *ipq60xx*) uci -q set wireless.${radio}.htmode='HE80' ;; esac
+ 
+     # 配置 iface 参数

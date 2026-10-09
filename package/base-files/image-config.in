@@ -173,10 +173,10 @@ if VERSIONOPT
 	config VERSION_DIST
 		string
 		prompt "Release distribution"
-		default "LibWrt"
+		default "AaronWrt"
 		help
 			This is the name of the release distribution.
-			If unspecified, it defaults to LibWrt.
+			If unspecified, it defaults to AaronWrt.
 
 	config VERSION_NUMBER
 		string

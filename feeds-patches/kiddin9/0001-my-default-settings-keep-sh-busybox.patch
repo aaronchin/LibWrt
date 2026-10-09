@@ -1,0 +1,16 @@
+Keep /bin/sh -> busybox: OpenWrt upgrade scripts (fwtool.sh) use ash-only
+"((...))" syntax that bash parses as arithmetic.
+
+diff --git a/my-default-settings/files/etc/uci-defaults/99-default-settings b/my-default-settings/files/etc/uci-defaults/99-default-settings
+index 2cdef5075..289669731 100644
+--- a/my-default-settings/files/etc/uci-defaults/99-default-settings
++++ b/my-default-settings/files/etc/uci-defaults/99-default-settings
+@@ -2,7 +2,7 @@
+ 
+ # 1. 基础系统与组件链接修正
+ sed -i 's|op.supes.top|dl.openwrt.ai|g' /etc/opkg/distfeeds.conf 2>/dev/null
+-[ -x /bin/bash ] && sed -i 's|/bin/ash|/bin/bash|g' /etc/passwd 2>/dev/null && ln -sf /bin/bash /bin/sh 2>/dev/null
++[ -x /bin/bash ] && sed -i 's|/bin/ash|/bin/bash|g' /etc/passwd 2>/dev/null
+ [ -x /usr/bin/wget ] && [ ! -x /usr/bin/wget-ssl ] && ln -sf /usr/bin/wget /usr/bin/wget-ssl
+ sed -i -e '/profile.d/d' /lib/upgrade/keep.d/base-files \
+        -e 's/git-.*-\(.*\)/git-\1/g' /usr/lib/lua/luci/version.lua 2>/dev/null

@@ -102,7 +102,7 @@ set ${s}.${id}
 set ${s}.band='${band_name}'
 set ${s}.channel='${channel}'
 set ${s}.htmode='${htmode}'
-set ${s}.country='${country || "CN"}'
+set ${s}.country='${country || "US"}'
 set ${s}.num_global_macaddr='${num_global_macaddr || ''}'
 
 set ${si}=wifi-iface
