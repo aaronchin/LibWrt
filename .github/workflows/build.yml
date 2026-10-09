@@ -8,10 +8,6 @@ on:
         default: ax6.config
         required: true
 
-env:
-  MIHOMO_VERSION: v1.19.32
-  MIHOMO_SHA256: c80df2ca5159567804da883401e0118908fc1155e05df2baf3dbd4d3ecfc3754
-
 jobs:
   build:
     runs-on: ubuntu-24.04
@@ -38,14 +34,6 @@ jobs:
           sh scripts/apply-feeds-patches.sh
           sh scripts/fix-feeds-apk-version.sh
           ./scripts/feeds install -a
-
-      - name: OpenClash core (mihomo)
-        run: |
-          mkdir -p files/etc/openclash/core
-          curl -fsSL "https://github.com/MetaCubeX/mihomo/releases/download/${MIHOMO_VERSION}/mihomo-linux-arm64-${MIHOMO_VERSION}.gz" \
-            | gunzip > files/etc/openclash/core/clash_meta
-          echo "${MIHOMO_SHA256}  files/etc/openclash/core/clash_meta" | sha256sum -c
-          chmod +x files/etc/openclash/core/clash_meta
 
       - name: Config
         run: |
